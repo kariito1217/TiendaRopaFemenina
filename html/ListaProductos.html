@@ -6,10 +6,46 @@
     <link rel="stylesheet" href="../css/ListaProductos.css" />
 </head>
 <body>
-
+  
     <section class="contenedorMain">
+
+        <header>
+            <img src="../img/logo.png" alt="logo">
+            <div class="filters">
+                <label for="categoria">Filtrar por categoría:</label>
+                <select id="categoria">
+                    <option value="todos">Todos</option>
+                    <option value="camisas">Camisas</option>
+                    <option value="chaquetas">Chaquetas</option>
+                    <option value="faldas">Faldas</option>
+                    <option value="enterizos">Enterizos</option>
+                    <option value="jean">Jean</option>
+                    <option value="camisetas">Camisetas</option>
+                    <option value="vestidos">Vestidos</option>
+                    <option value="calzado">Calzado</option>
+                </select>
+            </div>
+           
+            <div class="filters">
+                <label for="material">Filtrar por material:</label>
+                <select id="material">
+                    <option value="todos">Todos</option>
+                    <option value="algodon">Algodón</option>
+                    <option value="cuero_sintetico">Cuero Sintético</option>
+                    <option value="poliester">Poliéster</option>
+                    <option value="lino">Lino</option>
+                    <option value="seda">Seda</option>
+                    <option value="viscosa">Viscosa</option>
+                    <option value="denim">Denim</option>
+                    <option value="gamuza">Gamuza</option>
+                    <option value="lona">Lona</option>
+                </select>
+            </div>
+           
+        </header>
+
         <div class="contenedorDeProductos">
-            
+
             <div class="productos">
                 <img src="../img/camisa1.jpg" alt="Camisa">
                 <div class="info">
@@ -570,6 +606,36 @@
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
+    
+<!--Detalle de producto--> 
+
+  
+    <aside class="detalleProducto">
+        <nav>
+            <button type="button" id="cancelarCompra" name="botonesDetalle">Cancelar compra</button>
+            <button type="button" id="CompletarCompra" name="botonesDetalle">Completar compra</button>
+        </nav>
+        <div class="detalleProductoClose">
+            <img src ="../img/cerrar.png" alt="cerrar">
+        </div>
+        <img src="../img/camisa1.jpg" alt="imgProductoSeleccionado" class="imgProducto">
+        <div class="informacionProducto">
+            <p>Aqui va nombre</p>
+            <p>precio</p>
+            <p>categoria</p>
+            <p>tallas</p>
+            <p>color/es</p>
+            <p>descripcion</p>
+            <p>material</p>
+            <p>stock</p>
+
+            <form class="form2">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" min="1" required/>
+                <button type="button" id="agregarProducto" name="agregarProducto">Agregar producto a carrito de compras</button>
+            </form>
+        </div>
+    </aside>
 </body>
 </html>

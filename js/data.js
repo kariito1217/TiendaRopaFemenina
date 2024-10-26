@@ -498,4 +498,20 @@ function limpiarCampos() {
     for (let i = 0; i < radios.length; i++) {
         radios[i].checked = false; 
     }
+
+    // function showProductDetail(product) {
+    //     detailImage.src = product.image;
+    //     detailPrice.innerText = product.price;
+    //     detailName.innerText = product.name;
+    //     detailDescription.innerText = product.description;
+    //     productDetail.style.display = "block"; // Mostrar detalles
+    //   }
+
+    //   // Cerrar detalle del producto
+    //   closeDetail.addEventListener("click", () => {
+    //     productDetail.style.display = "none"; // Ocultar detalles
+    //   });
+
+    //   // Cargar productos inicialmente
+    //   loadProducts();
 }

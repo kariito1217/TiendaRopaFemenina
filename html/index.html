@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Requerimiento de compra</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/Style.css" />
 </head>
 <body>
     <div class="container">
@@ -14,7 +14,7 @@
 
         <section class="requerimientos">
             <h2>Requerimientos de Compra</h2>
-            <form class="formulario">
+            <form id="formulario" class="formulario">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" maxlength="20" placeholder="Nombre" required/>
 
@@ -40,8 +40,10 @@
                 </div>
 
                 <div class="contenedor-botones">
-                    <button type="submit" class="iniciarCompra">Iniciar Compra</button>
-                    <button type="reset" class="limpiarCampos">Limpiar Campos</button>
+                    <button type="button" onclick="iniciarCompra()" class="iniciarCompra">Iniciar Compra</button>
+                    <button onclick="limpiarCampos()" class="limpiarCampos">Limpiar Campos</button>
+
+                    <script src="../js/Data.js" type="text/JavaScript"></script>
                 </div>
             </form>
         </section>

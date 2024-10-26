@@ -2,7 +2,7 @@ const productos = [
     {
         id: 1,
         nombre: "Camisa",
-        precio: 119.000,
+        precio: 119000,
         categoria: "Camisas",
         talla: ["S", "M", "L", "XL"],
         color: ["Blanco"],
@@ -14,7 +14,7 @@ const productos = [
     {
         id: 2,
         nombre: "Camisa polo",
-        precio: 99.000,
+        precio: 99000,
         categoria: "Camisas",
         talla: ["S", "M", "L", "XL"],
         color: ["Beige"],
@@ -26,7 +26,7 @@ const productos = [
     {
         id: 3,
         nombre: "Chaqueta de Cuero Negra",
-        precio: 195.000,
+        precio: 195000,
         categoria: "Chaquetas",
         talla: ["S", "M", "L"],
         color: ["Negro"],
@@ -38,7 +38,7 @@ const productos = [
     {
         id: 4,
         nombre: "Chaqueta beige",
-        precio: 185.000,
+        precio: 185000,
         categoria: "Chaquetas",
         talla: ["S", "M", "L"],
         color: ["Beige"],
@@ -50,7 +50,7 @@ const productos = [
     {
         id: 5,
         nombre: "Falda Short Café Basico",
-        precio: 129.000,
+        precio: 129000,
         categoria: "Faldas",
         talla: ["S", "M", "L"],
         color: ["Café"],
@@ -62,7 +62,7 @@ const productos = [
     {
         id: 6,
         nombre: "Falda Short Negra",
-        precio: 129.000,
+        precio: 129000,
         categoria: "Faldas",
         talla: ["S", "M", "L"],
         color: ["Negro"],
@@ -74,7 +74,7 @@ const productos = [
     {
         id: 7,
         nombre: "Enterizo Beige Basico",
-        precio: 135.000,
+        precio: 135000,
         categoria: "Enterizos",
         talla: ["S", "M", "L","XL"],
         color: ["Beige"],
@@ -86,7 +86,7 @@ const productos = [
     {
         id: 8,
         nombre: "Enterizo Negro Básico",
-        precio: 140.000,
+        precio: 140000,
         categoria: "Enterizos",
         talla: ["S", "M", "L","XL"],
         color: ["Negro"],
@@ -98,7 +98,7 @@ const productos = [
     {
         id: 9,
         nombre: "Jean",
-        precio: 169.000,
+        precio: 169000,
         categoria: "Jeans",
         talla: ["S", "M", "L","XL"],
         color: ["Azul claro"],
@@ -110,7 +110,7 @@ const productos = [
     {
         id: 10,
         nombre: "Jean",
-        precio: 189.000,
+        precio: 189000,
         categoria: "Jeans",
         talla: ["S", "M", "L","XL"],
         color: ["Azul oscuro"],
@@ -122,7 +122,7 @@ const productos = [
     {
         id: 11,
         nombre: "Jean & Short azul claro",
-        precio: 189.000,
+        precio: 189000,
         categoria: "Jeans",
         talla: ["S", "M", "L","XL"],
         color: ["Azul oscuro"],
@@ -479,5 +479,23 @@ const productos = [
         stock: 55,
         imagen: "../img/jean40.jpg"
     }
-
 ];
+
+function iniciarCompra() {
+    const formulario = document.getElementById('formulario');
+    if (formulario.checkValidity()) {
+        window.location.href = 'ListaProductos.html'; 
+    }
+}
+
+function limpiarCampos() {
+    document.getElementById("nombre").value = "";    
+    document.getElementById("precio").value = "";    
+    document.getElementById("cantidad").value = "";   
+    document.getElementById("direccion").value = "";  
+
+    const radios = document.getElementsByName("tipoEntrega");
+    for (let i = 0; i < radios.length; i++) {
+        radios[i].checked = false; 
+    }
+}

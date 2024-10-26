@@ -1,0 +1,47 @@
+
+body{
+    margin: 0;
+    font-family:'Times New Roman', Times, serif
+}
+.contenedorDeProductos{
+    display: grid;
+    grid-template-columns:  repeat(4, 200px);
+    gap: 26px; /*Espacio entre los productos*/
+    place-content: start; 
+    /* margin: 60px; */
+}
+.productos{
+    width: 200px;
+}
+.productos img{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    object-fit: cover; /* La imagen se acomoda al contenedor*/
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.info figure{
+    margin: 0;
+}
+.info figure img{
+    width: 35px;
+    height: 35px;
+}
+.info div p:nth-child(1){ /*Primer parrafo que esté dentro de div, que este dentro de info*/
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
+.info div p:nth-child(2){ /*Segundo parrafo que esté dentro de div, que este dentro de info*/
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+.info div p:nth-child(3){ /*Tercer parrafo que esté dentro de div, que este dentro de info*/
+    margin-top: 0;
+    margin-bottom: 0;
+}

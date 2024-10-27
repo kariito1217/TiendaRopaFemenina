@@ -14,8 +14,8 @@ Muchas veces nuestra forma de vestir representa una forma de expresión de la so
 Este proyecto te permite:
 
 >- Registrar los detalles de tu compra (nombre, dirección, presupuesto, etc.).
-- Explorar una lista de productos filtrados categoría y material.
-- Añadir productos a tu carrito y completar la compra con validación de tarjeta.
+>- Explorar una lista de productos filtrados categoría y material.
+>- Añadir productos a tu carrito y completar la compra con validación de tarjeta.
 
 ![img pago con tarjeta](https://www.iniseg.es/blog/ciberseguridad/wp-content/uploads/2020/08/BLOG-INISEG-nuevo-formato-8-820x410.jpg)
 

@@ -108,6 +108,7 @@ header img{
     height: auto;
     margin-bottom: 15px;
     position: relative;
+    object-fit: cover;
 }
 
 

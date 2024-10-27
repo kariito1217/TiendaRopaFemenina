@@ -1,6 +1,6 @@
-# 🛍️ Tienda de Ropa Femenina Online
+# 🛍️ Dfashion
 
-Bienvenido a **Trending Shop**, un sitio donde puedes explorar y comprar ropa con facilidad. ¡Comienza agregando tus detalles de compra, explora nuestra lista de productos y completa tu compra de manera rápida y sencilla!
+Bienvenido a **Dfashion**, un sitio donde puedes explorar y comprar ropa con facilidad. ¡Comienza agregando tus detalles de compra, explora nuestra lista de productos y completa tu compra de manera rápida y sencilla!
 
 # 💇‍♀️ Motivación
 Muchas veces nuestra forma de vestir representa una forma de expresión de la sociedad. Las principales razones que nos motivan en esta empresa son:
@@ -14,10 +14,10 @@ Muchas veces nuestra forma de vestir representa una forma de expresión de la so
 Este proyecto te permite:
 
 >- Registrar los detalles de tu compra (nombre, dirección, presupuesto, etc.).
-- Explorar una lista de productos filtrados por talla, categoría y color.
+- Explorar una lista de productos filtrados categoría y material.
 - Añadir productos a tu carrito y completar la compra con validación de tarjeta.
 
-![Vista previa de la tienda](https://www.iniseg.es/blog/ciberseguridad/wp-content/uploads/2020/08/BLOG-INISEG-nuevo-formato-8-820x410.jpg)
+![img pago con tarjeta](https://www.iniseg.es/blog/ciberseguridad/wp-content/uploads/2020/08/BLOG-INISEG-nuevo-formato-8-820x410.jpg)
 
 ---
 

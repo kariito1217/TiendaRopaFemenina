@@ -486,7 +486,7 @@ function iniciarCompra() {
     if (formulario.checkValidity()) {
         window.location.href = 'ListaProductos.html'; 
     }else{
-        formulario.reportValidity(); // Esto mostrará los mensajes de error predeterminados del navegador
+        formulario.reportValidity(); 
     }
 }
 

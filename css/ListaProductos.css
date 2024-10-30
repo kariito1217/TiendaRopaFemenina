@@ -39,6 +39,7 @@ header > div {
     border-radius: 5px;
     font-size: 16px;
     border: none;
+    cursor: pointer;
 }
 #cancelarCompra,
 #completarCompra{

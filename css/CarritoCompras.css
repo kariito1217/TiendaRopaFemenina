@@ -1,0 +1,164 @@
+/* CarritoCompras.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf6f9;
+    color: #4a4a4a;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #ffe0e9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav button {
+    background-color: #ff85a2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #ff5c7b;
+}
+
+.contenedorCarrito {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ff5c7b;
+    margin-bottom: 15px;
+    font-size: 24px;
+    text-align: center;
+}
+
+#tablaCarrito {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#tablaCarrito th, #tablaCarrito td {
+    border: 1px solid #ffbcd1;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#tablaCarrito th {
+    background-color: #ffe0e9;
+    color: #ff5c7b;
+}
+
+#tablaCarrito tr:hover {
+    background-color: #fff3f6;
+}
+
+#tablaCarrito .precioTotalProducto {
+    font-weight: bold;
+}
+
+#resumenCompra {
+    margin-top: 20px;
+    background-color: #fff0f3;
+    border: 1px solid #ffccd5;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#resumenCompra p {
+    font-size: 18px;
+    color: #4a4a4a;
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+#pagoTarjeta {
+    margin-top: 30px;
+}
+
+#pagoTarjeta h2 {
+    font-size: 22px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+form input[type="text"],
+form input[type="password"],
+form select {
+    padding: 10px;
+    border: 1px solid #ffd6e2;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fffafc;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form select:focus {
+    border-color: #ff85a2;
+}
+
+form button {
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="button"] {
+    background-color: #ff85a2;
+}
+
+form button[type="button"]:hover {
+    background-color: #ff5c7b;
+}
+
+form button[type="button"]:disabled {
+    background-color: #ffbcd1;
+    cursor: not-allowed;
+}
+
+form button[type="button"]:first-child {
+    background-color: #ffccd5;
+    color: #4a4a4a;
+}
+
+form button[type="button"]:first-child:hover {
+    background-color: #ffb3c4;
+}

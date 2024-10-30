@@ -481,6 +481,53 @@ const productos = [
     }
 ];
 
+    const closeBtn = document.getElementById("close-btn");
+    const detalleProducto = document.querySelector(".detalleProducto");
+
+    closeBtn.addEventListener("click", function () {
+        detalleProducto.style.display = "none";
+    });
+
+    function obtenerProducto(id) {
+        return new Promise((resolve, reject) => {
+            const producto = productos.find(p => p.id === id);
+            if (producto) {
+                resolve(producto);
+            } else {
+                reject("Producto no encontrado");
+            }
+        });
+    }
+
+    const contenedorProductos = document.querySelector(".contenedorDeProductos");
+
+    contenedorProductos.addEventListener("click", function (event) {
+        const productoElement = event.target.closest(".productos");
+        if (productoElement) {
+            const productoId = parseInt(productoElement.getAttribute("data-id"));
+            obtenerProducto(productoId)
+                .then(producto => mostrarDetalleProducto(producto))
+                .catch(error => console.error(error));
+        }
+    });
+
+    function mostrarDetalleProducto(producto) {
+        const informacionProducto = document.querySelector(".informacionProducto");
+        informacionProducto.querySelector("img.imgProducto").src = producto.imagen;
+        informacionProducto.querySelector("p:nth-of-type(1)").innerText = "Nombre: " + producto.nombre;
+        informacionProducto.querySelector("p:nth-of-type(2)").innerText = `$${producto.precio}`;
+        informacionProducto.querySelector("p:nth-of-type(3)").innerText = "Categoría: " + producto.categoria;
+        informacionProducto.querySelector("p:nth-of-type(4)").innerText = "Tallas: " + producto.talla.join(", ");
+        informacionProducto.querySelector("p:nth-of-type(5)").innerText = "Color/es: " + producto.color.join(", ");
+        informacionProducto.querySelector("p:nth-of-type(6)").innerText = "Descripción: " + producto.descripcion;
+        informacionProducto.querySelector("p:nth-of-type(7)").innerText = "Material: " + producto.material;
+        informacionProducto.querySelector("p:nth-of-type(8)").innerText = "Stock: " + producto.stock;
+
+        detalleProducto.style.display = "block";
+    }
+
+    
+
 function iniciarCompra() {
     const formulario = document.getElementById('formulario');
     if (formulario.checkValidity()) {
@@ -501,19 +548,4 @@ function limpiarCampos() {
         radios[i].checked = false; 
     }
 
-    // function showProductDetail(product) {
-    //     detailImage.src = product.image;
-    //     detailPrice.innerText = product.price;
-    //     detailName.innerText = product.name;
-    //     detailDescription.innerText = product.description;
-    //     productDetail.style.display = "block"; // Mostrar detalles
-    //   }
-
-    //   // Cerrar detalle del producto
-    //   closeDetail.addEventListener("click", () => {
-    //     productDetail.style.display = "none"; // Ocultar detalles
-    //   });
-
-    //   // Cargar productos inicialmente
-    //   loadProducts();
 }

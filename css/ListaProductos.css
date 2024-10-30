@@ -187,6 +187,12 @@ header img {
     font-size: 16px;
     border: none;
 }
+.nombreProducto,
+.precioProducto{
+    font-weight: bold; /* Pone el texto en negrita */
+    font-size: 17px;
+}
+
 
 .form2 input,
 .form2 button {

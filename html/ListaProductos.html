@@ -29,12 +29,12 @@
                     </select>
         
                     <label for="color">Filtrar por material:</label>
-                    <input type="text" id="material" placeholder="Escribe un material" />
+                    <input type="text" id="material" placeholder="Algodón/Cuero/Poliéster/Lino/Seda/Viscosa/Denim/Gamuza/Lona" />
                 </div>
 
                 <div class="BotonesFiltros">
-                    <button type="button" id="filtrar" aria-label="Aplicar filtro">Filtrar</button>
-                    <button type="button" id="limpiarFiltro" aria-label="Limpiar filtro">Limpiar Filtro</button>
+                    <button type="button" id="filtrar">Filtrar</button>
+                    <button type="button" id="limpiarFiltro">Limpiar Filtro</button>
                     <button type="button" id="cancelarCompra" name="botonesDetalle" aria-label="Cancelar compra">Cancelar compra</button>
                     <button type="button" id="completarCompra" name="botonesDetalle" aria-label="Completar compra">Completar compra</button>
                 </div>
@@ -631,7 +631,7 @@
                 <input type="number" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" min="1" required />
                 <div class="botonesDetalle">
                    <button onclick="agregarAlCarrito()" type="button" id="agregarProducto">Agregar al carrito</button>
-                   <button onclick="limpiarCantidad()" type="button" id="limpiarCantidad">Limpiar Cantidad</button>
+                   <button onclick="limpiaCantidad()" type="button" id="limpiarCantidad">Limpiar Cantidad</button>
                 </div>    
             </form>
     </div>

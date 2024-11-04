@@ -140,18 +140,13 @@ header img {
     cursor: pointer;
 }
 
-.detalleProducto nav {
-    display: flex;
-    justify-content: space-between;
-    margin: 16px;
-}
-
 .imgProducto {
-    width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-    position: relative;
-    object-fit: cover;
+    width: 100%; 
+    height: auto; 
+    object-fit: cover; 
+    max-height: 350px; 
+    border-radius: 10px; 
+    margin-bottom: 15px; 
 }
 
 .detalleProductoClose {
@@ -186,10 +181,11 @@ header img {
     flex-direction: row;
     width: 100%;
     gap: 14px;
+    justify-content: space-between;
 }
 
 #agregarProducto,
-#LimpiarCantidad{
+#limpiarCantidad{
     padding: 10px 15px;
     background-color:rgb(70, 223, 137) ;
     border-radius: 5px;
@@ -210,11 +206,11 @@ header img {
     padding: 5px;
     margin-bottom: 10px;
 }
-input{
+#material {
+    width: 400px; /* Cambia este valor para ajustar el ancho */
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ffccd5;
     border-radius: 5px;
     font-size: 13px;
 }
-

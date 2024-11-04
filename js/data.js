@@ -613,6 +613,9 @@ function mostrarDetalleProducto(producto) {
             detalleProducto.style.display = "none";
         });
     }
+    function limpiaCantidad() {
+        document.getElementById("cantidad").value = ""; // Limpia el campo de cantidad
+    }
 
 
 function cargarProductos() {
@@ -648,9 +651,6 @@ function agregarAlCarrito(producto) {
     alert("Producto agregado al carrito.");
 }
 
-function limpiarCantidad() {
-    document.getElementById("cantidad").value = "";
-}
 
 // Funciones de filtrado
 const categoriaSelect = document.getElementById("categoria");

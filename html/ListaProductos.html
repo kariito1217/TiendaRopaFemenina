@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+    <meta name="description" content="Explora nuestra lista de productos y filtra por categoría o color para encontrar exactamente lo que buscas.">
     <title>Lista de Productos</title>
     <link rel="stylesheet" href="../css/ListaProductos.css" />
 </head>
@@ -9,9 +11,9 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="../img/logo.png" alt="Logo">
+                <img src="../img/logo.png" alt="Logo de la tienda">
             </div>
-            <nav>
+            <nav role="navigation" aria-label="Filtro de productos">
                 <div class="filters">
                     <label for="categoria">Filtrar por categoría:</label>
                     <select id="categoria">
@@ -20,32 +22,21 @@
                         <option value="chaquetas">Chaquetas</option>
                         <option value="faldas">Faldas</option>
                         <option value="enterizos">Enterizos</option>
-                        <option value="jean">Jean</option>
+                        <option value="jeans">Jeans</option>
                         <option value="camisetas">Camisetas</option>
                         <option value="vestidos">Vestidos</option>
                         <option value="calzado">Calzado</option>
                     </select>
         
-                    <label for="material">Filtrar por material:</label>
-                    <select id="material">
-                        <option value="todos">Todos</option>
-                        <option value="algodon">Algodón</option>
-                        <option value="cuero_sintetico">Cuero Sintético</option>
-                        <option value="poliester">Poliéster</option>
-                        <option value="lino">Lino</option>
-                        <option value="seda">Seda</option>
-                        <option value="viscosa">Viscosa</option>
-                        <option value="denim">Denim</option>
-                        <option value="gamuza">Gamuza</option>
-                        <option value="lona">Lona</option>
-                    </select>
+                    <label for="color">Filtrar por material:</label>
+                    <input type="text" id="material" placeholder="Escribe un material" />
                 </div>
 
                 <div class="BotonesFiltros">
-                    <button onclick="filtrar()" type="button" id="filtrar">Filtrar</button>
-                    <button onclick="limpiarFiltro()" type="button" id="limpiarFiltro">Limpiar Filtro</button>
-                    <button type="button" id="cancelarCompra" name="botonesDetalle">Cancelar compra</button>
-                    <button type="button" id="completarCompra" name="botonesDetalle">Completar compra</button>
+                    <button type="button" id="filtrar" aria-label="Aplicar filtro">Filtrar</button>
+                    <button type="button" id="limpiarFiltro" aria-label="Limpiar filtro">Limpiar Filtro</button>
+                    <button type="button" id="cancelarCompra" name="botonesDetalle" aria-label="Cancelar compra">Cancelar compra</button>
+                    <button type="button" id="completarCompra" name="botonesDetalle" aria-label="Completar compra">Completar compra</button>
                 </div>
             </nav>
         </div>
@@ -615,6 +606,7 @@
             </div>
         </div>
     </section>
+
     
 <!--Detalle de producto--> 
 
@@ -634,11 +626,14 @@
         <p class="materialProducto"></p>
         <p class="stockProducto"></p>
 
-        <form class="form2">
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" min="1" required />
-            <button type="button" id="agregarProducto" name="agregarProducto">Agregar producto a carrito de compras</button>
-        </form>
+            <form class="form2">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" min="1" required />
+                <div class="botonesDetalle">
+                   <button onclick="agregarAlCarrito()" type="button" id="agregarProducto">Agregar al carrito</button>
+                   <button onclick="limpiarCantidad()" type="button" id="limpiarCantidad">Limpiar Cantidad</button>
+                </div>    
+            </form>
     </div>
 </aside>
     <script src="../js/Data.js" type="text/JavaScript"></script>

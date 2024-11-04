@@ -181,12 +181,22 @@ header img {
     margin-bottom: 5px;
 }
 
-#agregarProducto{
+.botonesDetalle{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 14px;
+}
+
+#agregarProducto,
+#LimpiarCantidad{
     padding: 10px 15px;
     background-color:rgb(70, 223, 137) ;
     border-radius: 5px;
     font-size: 16px;
     border: none;
+    width: 50%;
+    cursor: pointer;
 }
 .nombreProducto,
 .precioProducto{
@@ -200,3 +210,11 @@ header img {
     padding: 5px;
     margin-bottom: 10px;
 }
+input{
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ffccd5;
+    border-radius: 5px;
+    font-size: 13px;
+}
+

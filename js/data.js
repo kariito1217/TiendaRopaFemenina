@@ -541,9 +541,7 @@ function limpiarCampos() {
     document.getElementsByName("tipoEntrega").forEach(input => input.checked = false);
 }
 
-
-// Función para cargar y mostrar productos en bloques de 15
-function mostrarProductos() {
+function mostrarProductos(productos) {
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
     contenedorProductos.innerHTML = "";
 
@@ -569,11 +567,9 @@ function mostrarProductos() {
     });
 }
 
-
 function mostrarDetalleProducto(producto) {
     const detalleProducto = document.querySelector(".detalleProducto");
 
-    // Asignar valores a los elementos de detalle
     document.querySelector(".imgProducto").src = producto.imagen;
     document.querySelector(".nombreProducto").innerText = producto.nombre;
     document.querySelector(".precioProducto").innerText = `Precio: $${producto.precio}`;
@@ -584,49 +580,47 @@ function mostrarDetalleProducto(producto) {
     document.querySelector(".materialProducto").innerText = `Material: ${producto.material}`;
     document.querySelector(".stockProducto").innerText = `Stock: ${producto.stock}`;
 
-    // Mostrar el panel de detalle
     detalleProducto.style.display = "block";
 
-    // Configurar el botón de agregar al carrito
     document.getElementById("agregarProducto").onclick = function () {
         agregarAlCarrito(producto);
     };
 }
 
-    const productos = cargarProductos();
-    mostrarProductos(productos);
+const productos = cargarProductos();
+mostrarProductos(productos);
 
-    const contenedorProductos = document.querySelector(".contenedorDeProductos");
-    contenedorProductos.addEventListener("click", function (event) {
-        const productoElement = event.target.closest(".productos");
-        if (productoElement) {
-            const productoId = parseInt(productoElement.getAttribute("data-id"));
-            const productoSeleccionado = productos.find(p => p.id === productoId);
-            if (productoSeleccionado) {
-                mostrarDetalleProducto(productoSeleccionado);
-            }
+const contenedorProductos = document.querySelector(".contenedorDeProductos");
+contenedorProductos.addEventListener("click", function (event) {
+    const productoElement = event.target.closest(".productos");
+    if (productoElement) {
+        const productoId = parseInt(productoElement.getAttribute("data-id"));
+        const productoSeleccionado = productos.find(p => p.id === productoId);
+        if (productoSeleccionado) {
+            mostrarDetalleProducto(productoSeleccionado);
         }
-    });
-
-    const closeBtn = document.getElementById("close-btn");
-    const detalleProducto = document.querySelector(".detalleProducto");
-
-    if (closeBtn && detalleProducto) {
-        closeBtn.addEventListener("click", function () {
-            detalleProducto.style.display = "none";
-        });
     }
-function limpiaCantidad() {
-    document.getElementById("cantidad").value = ""; // Limpia el campo de cantidad
+});
+
+const closeBtn = document.getElementById("close-btn");
+const detalleProducto = document.querySelector(".detalleProducto");
+
+if (closeBtn && detalleProducto) {
+    closeBtn.addEventListener("click", function () {
+        detalleProducto.style.display = "none";
+    });
 }
 
+function limpiaCantidad() {
+    document.getElementById("cantidad").value = ""; 
+}
 
 function cargarProductos() {
     return obtenerDatos(KEY_PRODUCTOS) || [];
 }
 
 function cargarCarrito() {
-    return obtenerDatos(KEY_CARRITO) || [];
+    return obtenerDatos(KEY_CARRITO) || []
 }
 
 function guardarCarrito(carrito) {
@@ -641,8 +635,8 @@ function agregarAlCarrito(producto) {
         alert("Por favor, ingresa una cantidad válida.");
         return;
     }
+    const carrito =cargarCarrito();
 
-    const carrito = cargarCarrito();
     const productoEnCarrito = carrito.find(item => item.id === producto.id);
     if (productoEnCarrito) {
         productoEnCarrito.cantidad += cantidad;
@@ -654,12 +648,9 @@ function agregarAlCarrito(producto) {
     alert("Producto agregado al carrito.");
 }
 
-
-// Funciones de filtrado
 const categoriaSelect = document.getElementById("categoria");
 const materialInput = document.getElementById("material");
 
-// Filtrar productos según selección de categoría y material
 function filtrar() {
     const categoria = categoriaSelect.value.toLowerCase();
     const material = materialInput.value.trim().toLowerCase();
@@ -673,16 +664,11 @@ function filtrar() {
     mostrarProductos(productosFiltrados);
 }
 
-// Limpiar filtros y mostrar todos los productos
 function limpiarFiltro() {
-    categoriaSelect.value = "todos"; // Restablecer categoría
-    materialInput.value = ""; // Restablecer material
-    mostrarProductos(productos); // Mostrar todos los productos
+    categoriaSelect.value = "todos";
+    materialInput.value = "";
+    mostrarProductos(productos);
 }
 
-// Asignar funciones a los botones de filtrar y limpiar
 document.getElementById("filtrar").onclick = filtrar;
 document.getElementById("limpiarFiltro").onclick = limpiarFiltro;
-
-// // Mostrar todos los productos al cargar la página
-// mostrarProductos(productos);

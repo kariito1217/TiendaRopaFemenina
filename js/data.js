@@ -541,7 +541,9 @@ function limpiarCampos() {
     document.getElementsByName("tipoEntrega").forEach(input => input.checked = false);
 }
 
-function mostrarProductos(productos) {
+
+// Función para cargar y mostrar productos en bloques de 15
+function mostrarProductos() {
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
     contenedorProductos.innerHTML = "";
 
@@ -566,6 +568,7 @@ function mostrarProductos(productos) {
         contenedorProductos.appendChild(productoElement);
     });
 }
+
 
 function mostrarDetalleProducto(producto) {
     const detalleProducto = document.querySelector(".detalleProducto");
@@ -613,9 +616,9 @@ function mostrarDetalleProducto(producto) {
             detalleProducto.style.display = "none";
         });
     }
-    function limpiaCantidad() {
-        document.getElementById("cantidad").value = ""; // Limpia el campo de cantidad
-    }
+function limpiaCantidad() {
+    document.getElementById("cantidad").value = ""; // Limpia el campo de cantidad
+}
 
 
 function cargarProductos() {

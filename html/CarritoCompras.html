@@ -11,79 +11,86 @@
         <button onclick="cancelarCompra()">Cancelar Compra</button>
         <button onclick="seguirComprando()">Seguir Comprando</button>
     </nav>
-    
+
     <main class="contenedorCarrito">
         <!-- Sección de Compra Actual -->
-        <section id="compraActual">
-            <h2>Compra Actual</h2>
-            <table id="tablaCarrito">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Descripción</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Camisa</td>
-                        <td>Camisa de Algodón</td>
-                        <td><input type="number" value="1" min="1" max="20" onchange="actualizarTotal(this)"></td>
-                        <td>$119,000</td>
-                        <td class="precioTotalProducto">$119,000</td>
-                        <td><button onclick="eliminarProducto(this)">Eliminar</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <table id="tablaCarrito">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyCarrito">
+                <!-- Aquí se llenarán los productos del carrito -->
+            </tbody>
+        </table>
 
         <!-- Resumen de Compra -->
         <section id="resumenCompra">
             <h2>Resumen de Compra</h2>
-            <p id="totalProductos">Total de Productos: <span>1</span></p>
-            <p id="costoTotal">Costo Total: <span>$119,000</span></p>
+            <p id="totalProductos">Total de Productos: <span>0</span></p>
+            <p id="costoTotal">Costo Total: <span>$0</span></p>
             <p id="cargoDomicilio">Cargo por Domicilio: <span>$15,000</span></p>
-            <p id="totalCompraFinal">Total con Domicilio: <span>$134,000</span></p>
+            <p id="totalCompraFinal">Total con Domicilio: <span>$15,000</span></p>
         </section>
 
         <!-- Formulario de Tarjeta de Crédito -->
         <section id="pagoTarjeta">
             <h2>Información de Pago</h2>
             <form id="formTarjeta">
-                <label>Número de Tarjeta</label>
-                <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" required maxlength="19">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Número de Tarjeta</label>
+                        <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" required maxlength="19">
+                    </div>
 
-                <label>Fecha de Expiración (MM/AA)</label>
-                <input type="text" placeholder="MM/AA" required maxlength="5">
+                    <div class="form-group">
+                        <label>Fecha de Expiración (MM/AA)</label>
+                        <input type="text" placeholder="MM/AA" required maxlength="5">
+                    </div>
 
-                <label>Código de Seguridad</label>
-                <input type="password" placeholder="***" required maxlength="3">
+                    <div class="form-group">
+                        <label>Código de Seguridad</label>
+                        <div class="input-container">
+                            <input type="password" id="codigoSeguridad" placeholder="*" required maxlength="3">
+                            <button type="button" onclick="verPassword()">👀</button>
+                        </div>
+                    </div>
 
-                <label>Nombre del Titular</label>
-                <input type="text" placeholder="Nombre Completo" required>
+                    <div class="form-group">
+                        <label>Nombre del Titular</label>
+                        <input type="text" placeholder="Nombre Completo" required>
+                    </div>
 
-                <label>País de Emisión</label>
-                <select required>
-                    <option value="colombia">Colombia</option>
-                    <option value="argentina">Argentina</option>
-                    <option value="mexico">México</option>
-                    <option value="brasil">Brasil</option>
-                    <option value="chile">Chile</option>
-                    <!-- Otros países -->
-                </select>
+                    <div class="form-group">
+                        <label>País de Emisión</label>
+                        <select required>
+                            <option value="colombia">Colombia</option>
+                            <option value="argentina">Argentina</option>
+                            <option value="mexico">México</option>
+                            <option value="brasil">Brasil</option>
+                            <option value="chile">Chile</option>
+                        </select>
+                    </div>
 
-                <label>Tipo de Tarjeta</label>
-                <select required>
-                    <option value="mastercard">Mastercard</option>
-                    <option value="visa">Visa</option>
-                    <option value="prepagada">Prepagada</option>
-                </select>
+                    <div class="form-group">
+                        <label>Tipo de Tarjeta</label>
+                        <select required>
+                            <option value="mastercard">Mastercard</option>
+                            <option value="visa">Visa</option>
+                            <option value="prepagada">Prepagada</option>
+                        </select>
+                    </div>
+                </div>
 
-                <button type="button" onclick="limpiarFormulario()">Limpiar Campos</button>
-                <button type="button" onclick="confirmarCompra()">Confirmar Compra</button>
+                <div class="button-container">
+                    <button type="button" onclick="limpiarFormulario()">Limpiar Campos</button>
+                    <button type="button" onclick="confirmarCompra()">Confirmar Compra</button>
+                </div>
             </form>
         </section>
     </main>

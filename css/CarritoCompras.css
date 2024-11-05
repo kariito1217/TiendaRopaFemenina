@@ -1,164 +1,145 @@
-/* CarritoCompras.css */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fdf6f9;
-    color: #4a4a4a;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
 }
 
+/* Navegación */
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #ffe0e9;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-nav button {
-    background-color: #ff85a2;
-    color: #fff;
+button {
+    background-color: #ff69b4; /* Rosa brillante */
+    color: white;
     border: none;
+    border-radius: 5px;
     padding: 10px 20px;
-    font-size: 16px;
     cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-nav button:hover {
-    background-color: #ff5c7b;
+button:hover {
+    background-color: #ff1493; /* Rosa más oscuro */
 }
 
+/* Contenedor del carrito */
 .contenedorCarrito {
-    max-width: 900px;
-    margin: 30px auto;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Secciones */
+section {
+    margin-bottom: 30px;
 }
 
 h2 {
-    color: #ff5c7b;
-    margin-bottom: 15px;
-    font-size: 24px;
-    text-align: center;
+    color: #ff69b4;
+    border-bottom: 2px solid #ff69b4;
+    padding-bottom: 10px;
 }
 
+/* Tabla */
 #tablaCarrito {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
 }
 
-#tablaCarrito th, #tablaCarrito td {
-    border: 1px solid #ffbcd1;
-    padding: 12px;
-    text-align: center;
-    font-size: 16px;
-}
-
-#tablaCarrito th {
-    background-color: #ffe0e9;
-    color: #ff5c7b;
-}
-
-#tablaCarrito tr:hover {
-    background-color: #fff3f6;
-}
-
-#tablaCarrito .precioTotalProducto {
-    font-weight: bold;
-}
-
-#resumenCompra {
-    margin-top: 20px;
-    background-color: #fff0f3;
-    border: 1px solid #ffccd5;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-#resumenCompra p {
-    font-size: 18px;
-    color: #4a4a4a;
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 0;
-}
-
-#pagoTarjeta {
-    margin-top: 30px;
-}
-
-#pagoTarjeta h2 {
-    font-size: 22px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-form label {
-    font-size: 16px;
-    color: #4a4a4a;
-}
-
-form input[type="text"],
-form input[type="password"],
-form select {
+th, td {
     padding: 10px;
-    border: 1px solid #ffd6e2;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #fffafc;
-    outline: none;
-    transition: border-color 0.3s ease;
+    text-align: left;
+    border-bottom: 1px solid #eee;
 }
 
-form input[type="text"]:focus,
-form input[type="password"]:focus,
-form select:focus {
-    border-color: #ff85a2;
+th {
+    background-color: #ffb6c1; /* Rosa claro */
 }
 
-form button {
-    padding: 12px;
-    border: none;
+tr:hover {
+    background-color: #ffe4e1; /* Rosa pálido */
+}
+
+/* Estilo para los inputs y select */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 80%; /* Ancho reducido */
+    max-width: 250px; /* Ancho máximo para todos los inputs */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+    border-color: #ff69b4; /* Rosa brillante */
+}
+
+/* Contenedor para el input de código de seguridad y el botón del ojo */
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+.input-container input {
+    flex: 1; /* Permite que el input tome el espacio restante */
+    margin-right: 10px; /* Espacio entre el input y el botón */
+}
+
+.input-container button {
+    background-color: transparent; /* Botón transparente */
+    border: none; /* Sin borde */
     cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    font-size: 1.2em; /* Tamaño del ícono */
 }
 
-form button[type="button"] {
-    background-color: #ff85a2;
+/* Ajustes de margen */
+p {
+    margin: 0;
 }
 
-form button[type="button"]:hover {
-    background-color: #ff5c7b;
+/* Estilo para los botones de limpiar y confirmar */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre los botones */
+    margin-top: 10px; /* Espacio superior */
 }
 
-form button[type="button"]:disabled {
-    background-color: #ffbcd1;
-    cursor: not-allowed;
+.button-container button {
+    background-color: #ff85c0; /* Rosa suave */
+    color: white; /* Texto blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor tipo puntero */
+    transition: background-color 0.3s; /* Transición suave */
 }
 
-form button[type="button"]:first-child {
-    background-color: #ffccd5;
-    color: #4a4a4a;
+.button-container button:hover {
+    background-color: #ff5b99; /* Rosa más oscuro al pasar el mouse */
 }
 
-form button[type="button"]:first-child:hover {
-    background-color: #ffb3c4;
+/* Estilo de la cuadrícula para el formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 15px; /* Espaciado entre columnas */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column; /* Apilar etiquetas y inputs */
 }

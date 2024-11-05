@@ -194,6 +194,13 @@ header img {
     width: 50%;
     cursor: pointer;
 }
+
+
+#cancelarCompra,
+#completarCompra{
+    cursor: pointer;
+}
+
 .nombreProducto,
 .precioProducto{
     font-weight: bold; /* Pone el texto en negrita */

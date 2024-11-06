@@ -25,18 +25,16 @@
                 </tr>
             </thead>
             <tbody id="tbodyCarrito">
-                <!-- Aquí se llenarán los productos del carrito -->
+                <tr>
+                    <td class="nombre"></td>
+                    <td class="img"> <img src="" alt=""></td>
+                    <td class="precio"></td>
+                    <td class="cantidad"></td>
+                    <td class="accion"> <button onclick="eliminar()" type="button">Eliminar</button></td>
+                </tr>
             </tbody>
         </table>
 
-        <!-- Resumen de Compra -->
-        <section id="resumenCompra">
-            <h2>Resumen de Compra</h2>
-            <p id="totalProductos">Total de Productos: <span>0</span></p>
-            <p id="costoTotal">Costo Total: <span>$0</span></p>
-            <p id="cargoDomicilio">Cargo por Domicilio: <span>$15,000</span></p>
-            <p id="totalCompraFinal">Total con Domicilio: <span>$15,000</span></p>
-        </section>
 
         <!-- Formulario de Tarjeta de Crédito -->
         <section id="pagoTarjeta">

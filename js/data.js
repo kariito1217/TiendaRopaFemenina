@@ -619,12 +619,16 @@ function cargarProductos() {
     return obtenerDatos(KEY_PRODUCTOS) || [];
 }
 
-function cargarCarrito() {
-    return obtenerDatos(KEY_CARRITO) || []
+function guardarCarrito(carrito) {
+    console.log("Guardando carrito:", carrito); // Verifica que el carrito se guarda correctamente
+    localStorage.setItem(KEY_CARRITO, JSON.stringify(carrito));  // Guardamos el carrito en localStorage
 }
 
-function guardarCarrito(carrito) {
-    guardarDatos(KEY_CARRITO, carrito);
+// Función para cargar el carrito desde localStorage
+function cargarCarrito() {
+    const carrito = JSON.parse(localStorage.getItem(KEY_CARRITO)) || [];  // Cargamos el carrito
+    console.log("Carrito cargado:", carrito);  // Verifica que se carga correctamente
+    return carrito;
 }
 
 function agregarAlCarrito(producto) {
@@ -672,3 +676,55 @@ function limpiarFiltro() {
 
 document.getElementById("filtrar").onclick = filtrar;
 document.getElementById("limpiarFiltro").onclick = limpiarFiltro;
+
+function completarCompra() {
+    const carrito = cargarCarrito();
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+    }
+    guardarCarrito(carrito);
+    window.location.href = 'CarritoCompras.html';
+
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    mostrarCarrito(); // Llama a la función para mostrar el carrito al cargar la página
+});
+
+function mostrarCarrito() {
+    console.log("Ejecutando mostrarCarrito...");
+    const carrito = cargarCarrito();  // Cargar el carrito desde localStorage
+    const tbodyCarrito = document.getElementById("tbodyCarrito");
+
+    tbodyCarrito.innerHTML = ""; // Limpiar la tabla antes de agregar los productos
+
+    if (carrito.length === 0) {
+        const filaVacia = document.createElement("tr");
+        filaVacia.innerHTML = "<td colspan='5'>El carrito está vacío.</td>";
+        tbodyCarrito.appendChild(filaVacia);
+        return;
+    }
+
+    carrito.forEach(producto => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td class="nombre">${producto.nombre}</td>
+            <td class="img"><img src="${producto.imagen}" alt="${producto.nombre}" style="width: 50px; height: auto;"></td>
+            <td class="precio">$${producto.precio}</td>
+            <td class="cantidad">${producto.cantidad}</td>
+            <td class="accion"><button onclick="eliminar(${producto.id})" type="button">Eliminar</button></td>
+        `;
+        tbodyCarrito.appendChild(fila);
+    });
+}
+
+
+function eliminar(id) {
+    let carrito = cargarCarrito();
+    carrito = carrito.filter(producto => producto.id !== id);
+    guardarCarrito(carrito);
+    mostrarCarrito();
+    console.log("Producto eliminado, carrito actualizado:", carrito);
+}
+

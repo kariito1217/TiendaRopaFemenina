@@ -645,16 +645,6 @@ function limpiarFiltro() {
 document.getElementById("filtrar").onclick = filtrar;
 document.getElementById("limpiarFiltro").onclick = limpiarFiltro;
 
-function completarCompra() {
-    const carrito = cargarCarrito();
-    if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-    }
-    guardarCarrito(carrito);
-    window.location.href = 'CarritoCompras.html';
-
-}
 
 function agregarAlCarrito(producto) {
     const cantidadInput = document.getElementById("cantidad").value;
@@ -717,6 +707,17 @@ function mostrarCarrito() {
         `;
         tbodyCarrito.appendChild(fila);
     });
+}
+function completarCompra() {
+    const carrito = cargarCarrito();
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+    }
+    
+    guardarCarrito(carrito);
+    window.location.href = 'CarritoCompras.html';
+    mostrarCarrito();
 }
 
 function eliminar(id) {

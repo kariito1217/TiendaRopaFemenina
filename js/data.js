@@ -16,13 +16,6 @@ function obtenerDatos(key){
     return JSON.parse(dataString)
 }    
 
-// function LimpiarDatos(){
-//     localStorage.clear();
-// }
-
-// function eliminarDatos(key){
-//     localStorage.removeItem(key);
-// }
 
 if (!localStorage.getItem(KEY_PRODUCTOS)) {//Comprueba si no hay datos almacenado bajo esa clave
     const productos = [

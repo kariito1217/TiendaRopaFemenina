@@ -542,21 +542,6 @@ function limpiarCampos() {
     document.getElementsByName("tipoEntrega").forEach(input => input.checked = false);
 }
 
-//KAREN, VERIFICA SI LO QUIERES ELIMINAR
-document.addEventListener("DOMContentLoaded", function() {
-    const contenedorProductos = document.querySelector(".contenedorDeProductos");
-
-    // Verifica si el usuario está en la página de productos
-    if (contenedorProductos && window.location.pathname.includes("ListaProductos.html")) {
-        mostrarProductos();  // Solo ejecuta si el contenedor existe y estás en la página adecuada
-    }
-
-    // Verifica si el usuario está en la página de carrito
-    if (window.location.pathname.includes("CarritoCompras.html")) {
-        mostrarCarrito();  // Solo ejecuta si estás en la página del carrito
-    }
-});
-
 // Función mostrar Productos
 function mostrarProductos(productosMostrar = productos) { 
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
@@ -711,20 +696,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
-function seguirComprando() {
-    window.location.href = 'ListaProductos.html';
-}
-
-function cancelarCompra() {
-    localStorage.removeItem("carrito");
-    window.location.href = 'Index.html';
-}
-
-function limpiarFormulario() {
-    document.getElementById("formTarjeta").reset();
-}
-
 //VISTA DE CARRITO. 
 
 function cargarCarrito() {
@@ -761,6 +732,7 @@ function agregarAlCarrito(producto) {
 function mostrarCarrito() {
     const carrito = cargarCarrito();  
     const tbodyCarrito = document.getElementById("tbodyCarrito");
+    const costoDomicilio = 15000;
 
     if (!tbodyCarrito) {
         console.log("Elemento tbodyCarrito no encontrado");
@@ -771,23 +743,51 @@ function mostrarCarrito() {
 
     if (carrito.length === 0) {
         const filaVacia = document.createElement("tr");
-        filaVacia.innerHTML = "<td colspan='5'>El carrito está vacío.</td>";
+        filaVacia.innerHTML = "<td colspan='6'>El carrito está vacío.</td>";
         tbodyCarrito.appendChild(filaVacia);
         return;
     }
 
+    let totalCompra = 0;
     carrito.forEach(producto => {
+        const totalProducto = producto.precio * producto.cantidad;
+        totalCompra += totalProducto;
+        
         const fila = document.createElement("tr");
         fila.innerHTML = `
             <td class="nombre">${producto.nombre}</td>
             <td class="img"><img src="${producto.imagen}" alt="${producto.nombre}" style="width: 50px; height: auto;"></td>
-            <td class="precio">$${producto.precio}</td>
+            <td class="precio">$${producto.precio.toLocaleString()}</td>
             <td class="cantidad">${producto.cantidad}</td>
+            <td class="total">$${totalProducto.toLocaleString()}</td>
             <td class="accion"><button onclick="eliminar(${producto.id})" type="button">Eliminar</button></td>
         `;
         tbodyCarrito.appendChild(fila);
     });
+
+    // Mostrar el total de la compra y el costo del domicilio
+    const filaTotal = document.createElement("tr");
+    filaTotal.innerHTML = `
+        <td colspan="4">Costo total de los productos</td>
+        <td colspan="2">$${totalCompra.toLocaleString()}</td>
+    `;
+    tbodyCarrito.appendChild(filaTotal);
+
+    const filaDomicilio = document.createElement("tr");
+    filaDomicilio.innerHTML = `
+        <td colspan="4">Costo del domicilio</td>
+        <td colspan="2">$${costoDomicilio.toLocaleString()}</td>
+    `;
+    tbodyCarrito.appendChild(filaDomicilio);
+
+    const filaTotalFinal = document.createElement("tr");
+    filaTotalFinal.innerHTML = `
+        <td colspan="4"><strong>Total de la compra</strong></td>
+        <td colspan="2"><strong>$${(totalCompra + costoDomicilio).toLocaleString()}</strong></td>
+    `;
+    tbodyCarrito.appendChild(filaTotalFinal);
 }
+
 
 function completarCompra() {
     const carrito = cargarCarrito();
@@ -810,3 +810,89 @@ function eliminar(id) {
 
 // Ejecuta mostrarCarrito cuando el DOM esté cargado
 document.addEventListener("DOMContentLoaded", mostrarCarrito);
+
+
+let compraEnProgreso = false;
+
+function validarCompra() {
+    const carrito = cargarCarrito();
+    const totalProductos = carrito.reduce((sum, producto) => sum + producto.cantidad, 0);
+    const totalCompra = carrito.reduce((sum, producto) => sum + (producto.precio * producto.cantidad), 0) + 15000; // Incluye el costo del domicilio
+
+    const presupuesto = obtenerDatos(KEY_COMPRA).presupuesto; // Asumiendo que ya tienes un presupuesto almacenado
+
+    return new Promise((resolve, reject) => {
+        const tiempoProcesamiento = Math.floor(Math.random() * (3000 - 2000 + 1)) + 2000;
+
+        setTimeout(() => {
+            if (totalProductos > 20) {
+                reject("No puedes comprar más de 20 productos.");
+            } else if (totalCompra > presupuesto) {
+                reject("El costo total excede tu presupuesto.");
+            } else {
+                resolve("Compra validada correctamente.");
+            }
+        }, tiempoProcesamiento);
+    });
+}
+
+function confirmarCompra() {
+    if (compraEnProgreso) {
+        alert("Ya hay una compra en progreso, por favor espera.");
+        return;
+    }
+
+    compraEnProgreso = true;  // Activamos el estado de compra en progreso
+    const botonConfirmar = document.querySelector("button[type='button'][onclick='confirmarCompra()']");
+    botonConfirmar.disabled = true;  // Deshabilitar el botón de compra
+
+    validarCompra().then(mensaje => {
+        alert(mensaje);
+        compraEnProgreso = false;  // Reiniciar el estado de compra
+        window.location.href = 'Index.html'; // Redirigir a la página inicial
+    }).catch(error => {
+        alert(`Error: ${error}`);
+        compraEnProgreso = false;  // Reiniciar el estado de compra si hay un error
+        botonConfirmar.disabled = false;  // Rehabilitar el botón si hay un error
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleccionamos todos los botones excepto el botón de confirmar compra
+    const botones = document.querySelectorAll("button:not([onclick='confirmarCompra()'])");
+
+    botones.forEach(boton => {
+        boton.addEventListener("click", function(event) {
+            if (compraEnProgreso) {
+                event.preventDefault();  // Evitamos que el botón haga su acción
+            }
+        });
+    });
+});
+
+function cancelarCompra() {
+    if (compraEnProgreso) {
+        alert("Ya hay una compra en progreso, por favor espera.");
+        return;
+    }
+
+    localStorage.removeItem("carrito");
+    window.location.href = 'Index.html';
+}
+
+function seguirComprando() {
+    if (compraEnProgreso) {
+        alert("Ya hay una compra en progreso, por favor espera.");
+        return;
+    }
+
+    window.location.href = 'ListaProductos.html';
+}
+
+function limpiarFormulario() {
+    if (compraEnProgreso) {
+        alert("Ya hay una compra en progreso, por favor espera.");
+        return;
+    }
+    document.getElementById("formTarjeta").reset();
+}

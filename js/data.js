@@ -835,6 +835,16 @@ function confirmarCompra() {
         return;
     }
 
+    const formulario = document.getElementById("formTarjeta");  
+
+    
+    if (!formulario.checkValidity()) {
+        alert("Por favor, completa todos los campos del formulario correctamente.");
+        formulario.reportValidity();  
+        return;
+    }
+
+   
     compraEnProgreso = true;  // Activamos el estado de compra en progreso
     const botonConfirmar = document.querySelector("button[type='button'][onclick='confirmarCompra()']");
     botonConfirmar.disabled = true;  // Deshabilitar el botón de compra
@@ -889,3 +899,8 @@ function limpiarFormulario() {
     }
     document.getElementById("formTarjeta").reset();
 }
+
+document.getElementById("verPassword").onclick = function() {
+    const passwordField = document.getElementById("codigoSeguridad");
+    passwordField.type = (passwordField.type === "password") ? "text" : "password";
+};

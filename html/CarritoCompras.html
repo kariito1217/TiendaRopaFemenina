@@ -42,15 +42,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Fecha de Expiración (MM/AA)</label>
-                        <input type="text" placeholder="MM/AA" required maxlength="5">
+                        <label>Fecha de Expiración</label>
+                        <input type="date" required>
                     </div>
 
                     <div class="form-group">
                         <label>Código de Seguridad</label>
                         <div class="input-container">
                             <input type="password" id="codigoSeguridad" placeholder="*" required maxlength="3">
-                            <button type="button" onclick="verPassword()">👀</button>
+                            <button id="verPassword" type="button" onclick="verPassword()">👀</button>
                         </div>
                     </div>
 
@@ -62,6 +62,7 @@
                     <div class="form-group">
                         <label>País de Emisión</label>
                         <select required>
+                            <option value="">Elije país</option>
                             <option value="colombia">Colombia</option>
                             <option value="argentina">Argentina</option>
                             <option value="mexico">México</option>
@@ -73,6 +74,7 @@
                     <div class="form-group">
                         <label>Tipo de Tarjeta</label>
                         <select required>
+                            <option value="">Elije tipo de tarjeta</option>
                             <option value="mastercard">Mastercard</option>
                             <option value="visa">Visa</option>
                             <option value="prepagada">Prepagada</option>

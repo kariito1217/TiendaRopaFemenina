@@ -73,6 +73,7 @@ tr:hover {
 input[type="text"],
 input[type="number"],
 input[type="password"],
+input[type="date"] ,
 select {
     width: 80%; /* Ancho reducido */
     max-width: 250px; /* Ancho máximo para todos los inputs */

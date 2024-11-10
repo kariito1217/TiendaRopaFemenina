@@ -3,7 +3,7 @@ const KEY_PRODUCTOS = "productos";
 const KEY_CARRITO = "carrito";
 const ITEMS_POR_PAGINA = 15; // Número de productos que se cargan por cada 'página' de scroll
 let paginaActual = 1;
-
+let productosFiltrados = null;
 
 function guardarDatos(key, data) {
     const dataString = JSON.stringify(data);
@@ -545,7 +545,7 @@ function limpiarCampos() {
 }
 
 // Función para mostrar productos con paginación
-function mostrarProductos(productosMostrar = productos) { 
+function mostrarProductos(productosMostrar = productos) {
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
 
     if (!contenedorProductos) { 
@@ -555,12 +555,11 @@ function mostrarProductos(productosMostrar = productos) {
 
     const inicio = (paginaActual - 1) * ITEMS_POR_PAGINA; 
     const fin = inicio + ITEMS_POR_PAGINA; 
-    const productosPagina = productosMostrar.slice(inicio, fin); // Obtiene solo los productos de la página actual
+    const productosPagina = productosMostrar.slice(inicio, fin);
 
-    // Verificar si no hay más productos para mostrar después de la carga inicial
     if (productosPagina.length === 0 && paginaActual > 1) {
         alert("No hay más productos para mostrar.");
-        window.removeEventListener("scroll", manejarScroll); // Detener el scroll
+        window.removeEventListener("scroll", manejarScroll);
         return;
     }
 
@@ -586,25 +585,27 @@ function mostrarProductos(productosMostrar = productos) {
         contenedorProductos.appendChild(productoElement); 
     });
 
-    paginaActual++; // Incrementa la página para la siguiente carga
+    paginaActual++;
 }
 
-// Función para detectar cuando el usuario hace scroll al final de la página y cargar más productos
 function manejarScroll() {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     console.log(`scrollTop: ${scrollTop}, clientHeight: ${clientHeight}, scrollHeight: ${scrollHeight}`);
     
     if (scrollTop + clientHeight >= scrollHeight - 50) {
-        console.log("End of page reached, loading more products");
-        mostrarProductos();
+        if (productosFiltrados) {
+            mostrarProductos(productosFiltrados);
+        } else {
+            mostrarProductos();
+        }
     }
 }
 
-// Iniciar la carga de los primeros productos y configurar el evento de scroll
 document.addEventListener("DOMContentLoaded", function() { 
     mostrarProductos();
     window.addEventListener("scroll", manejarScroll);
 });
+
 
 //Función mostrar detalle 
 function mostrarDetalleProducto(producto) {
@@ -666,40 +667,47 @@ function limpiaCantidad() {
 }
 
 
-
-
 const categoriaSelect = document.getElementById("categoria");
 const materialInput = document.getElementById("material");
 
 
 function filtrar() {
+    const categoriaSelect = document.getElementById("categoria");
+    const materialInput = document.getElementById("material");
+
     const categoria = categoriaSelect.value.toLowerCase();
     const material = materialInput.value.trim().toLowerCase();
 
-    // Filtrar productos usando los valores de categoría y material
-    const productosFiltrados = productos.filter((producto) => {
+    productosFiltrados = productos.filter((producto) => {
         const coincideCategoria = categoria === "todos" || producto.categoria.toLowerCase() === categoria;
         const coincideMaterial = !material || producto.material.toLowerCase().includes(material);
         return coincideCategoria && coincideMaterial;
     });
 
-    mostrarProductos(productosFiltrados); // Mostrar solo los productos filtrados
+    paginaActual = 1; 
+    const contenedorProductos = document.querySelector(".contenedorDeProductos");
+    contenedorProductos.innerHTML = "";
+    mostrarProductos(productosFiltrados);
 }
-
 
 function limpiarFiltro() {
+    const categoriaSelect = document.getElementById("categoria");
+    const materialInput = document.getElementById("material");
+
     categoriaSelect.value = "todos";
     materialInput.value = "";
-    mostrarProductos(); // Llamar a mostrarProductos sin parámetros muestra todos los productos
+    productosFiltrados = null;
+    paginaActual = 1;
+
+    const contenedorProductos = document.querySelector(".contenedorDeProductos");
+    contenedorProductos.innerHTML = "";
+    mostrarProductos();
 }
 
-
 document.addEventListener("DOMContentLoaded", function() {
-    // Obtener los botones por ID
     const botonFiltrar = document.getElementById("filtrar");
     const botonLimpiarFiltro = document.getElementById("limpiarFiltro");
 
-    // Asegurarse de que los elementos existen antes de asignarles un evento
     if (botonFiltrar) {
         botonFiltrar.addEventListener("click", filtrar);
     }
@@ -708,10 +716,8 @@ document.addEventListener("DOMContentLoaded", function() {
         botonLimpiarFiltro.addEventListener("click", limpiarFiltro);
     }
 
-    // Mostrar productos al cargar la página
     mostrarProductos();
 });
-
 
 //VISTA DE CARRITO. 
 

@@ -5,7 +5,7 @@
 
 ---
 
-![img logo](./img/logo.png)
+![img logo](./img/logoNormal.png)
 ## 💇‍♀️ Motivación
 
 La moda es mucho más que ropa; es una forma de expresión, una herramienta para superar complejos y una fuente de creatividad. En **Dfashion**, queremos ofrecerte productos que no solo te hagan ver bien, sino que también te ayuden a sentirte seguro y auténtico. Nos apasiona la idea de que cada persona puede usar la ropa como una forma de arte y originalidad, y trabajamos para que encuentres esas prendas especiales que realmente reflejan quién eres.
@@ -34,6 +34,9 @@ La moda es mucho más que ropa; es una forma de expresión, una herramienta para
 - **Simulación de pago**: Utilizando **Promesas** en JavaScript, el sistema simula el procesamiento del pago, mostrando tiempos de espera y mensajes de éxito o error al completar la transacción.
 
 ---
+
+
+![vistaCarrito](./img/carrito.jpg)
 
 ## 🌟 Estructura del Proyecto
 

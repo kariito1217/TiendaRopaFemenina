@@ -5,7 +5,7 @@
 
 ---
 
-![img logo](./img/logoNormal.png)
+![img logo](./img/logoNormal.jpg)
 ## 💇‍♀️ Motivación
 
 La moda es mucho más que ropa; es una forma de expresión, una herramienta para superar complejos y una fuente de creatividad. En **Dfashion**, queremos ofrecerte productos que no solo te hagan ver bien, sino que también te ayuden a sentirte seguro y auténtico. Nos apasiona la idea de que cada persona puede usar la ropa como una forma de arte y originalidad, y trabajamos para que encuentres esas prendas especiales que realmente reflejan quién eres.

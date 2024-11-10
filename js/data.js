@@ -1,6 +1,8 @@
 const KEY_COMPRA = "datosCompra"; 
 const KEY_PRODUCTOS = "productos";
 const KEY_CARRITO = "carrito";
+const ITEMS_POR_PAGINA = 15; // Número de productos que se cargan por cada 'página' de scroll
+let paginaActual = 1;
 
 
 function guardarDatos(key, data) {
@@ -504,6 +506,13 @@ if (!localStorage.getItem(KEY_PRODUCTOS)) {//Comprueba si no hay datos almacenad
     guardarDatos(KEY_PRODUCTOS, productos);
 }
 
+function cargarProductos() {
+    return obtenerDatos(KEY_PRODUCTOS) || [];
+}
+
+let productos = cargarProductos(); // Asegúrate de que productos esté definido globalmente.
+
+
 function iniciarCompra() {
     const nombre = document.getElementById("nombre").value;
     const presupuesto = document.getElementById("precio").value;
@@ -535,48 +544,66 @@ function limpiarCampos() {
     document.getElementsByName("tipoEntrega").forEach(input => input.checked = false);
 }
 
-// Función mostrar Productos
+// Función para mostrar productos con paginación
 function mostrarProductos(productosMostrar = productos) { 
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
 
-    if (!contenedorProductos) {
-        console.error("El contenedor de productos no se encontró.");
+    if (!contenedorProductos) { 
+        console.error("El contenedor de productos no se encontró."); 
+        return; 
+    }
+
+    const inicio = (paginaActual - 1) * ITEMS_POR_PAGINA; 
+    const fin = inicio + ITEMS_POR_PAGINA; 
+    const productosPagina = productosMostrar.slice(inicio, fin); // Obtiene solo los productos de la página actual
+
+    // Verificar si no hay más productos para mostrar después de la carga inicial
+    if (productosPagina.length === 0 && paginaActual > 1) {
+        alert("No hay más productos para mostrar.");
+        window.removeEventListener("scroll", manejarScroll); // Detener el scroll
         return;
     }
 
-    if (!productosMostrar || productosMostrar.length === 0) {
-        console.error("No se encontraron productos.");
-        contenedorProductos.innerHTML = "<p>No se encontraron productos.</p>";
-        return;
-    }
-
-    contenedorProductos.innerHTML = ""; // Limpiamos el contenedor antes de mostrar
-
-    productosMostrar.forEach(producto => {
-        const productoElement = document.createElement("div");
-        productoElement.classList.add("productos");
+    productosPagina.forEach(producto => { 
+        const productoElement = document.createElement("div"); 
+        productoElement.classList.add("productos"); 
         productoElement.setAttribute("data-id", producto.id);
 
-        productoElement.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}">
-            <div class="info">
-                <div>
-                    <p>${producto.nombre}</p>
-                    <p>$${producto.precio.toLocaleString()}</p>
-                    <p>Stock: ${producto.stock}</p>
-                </div>
-                <figure>
-                    <img src="../img/carrito.png" alt="carroCompras">
-                </figure>              
-            </div>
+        productoElement.innerHTML = ` 
+            <img src="${producto.imagen}" alt="${producto.nombre}"> 
+            <div class="info"> 
+                <div> 
+                    <p>${producto.nombre}</p> 
+                    <p>$${producto.precio.toLocaleString()}</p> 
+                    <p>Stock: ${producto.stock}</p> 
+                </div> 
+                <figure> 
+                    <img src="../img/carrito.png" alt="carroCompras"> 
+                </figure> 
+            </div> 
         `;
 
-        contenedorProductos.appendChild(productoElement);
+        contenedorProductos.appendChild(productoElement); 
     });
+
+    paginaActual++; // Incrementa la página para la siguiente carga
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+// Función para detectar cuando el usuario hace scroll al final de la página y cargar más productos
+function manejarScroll() {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    console.log(`scrollTop: ${scrollTop}, clientHeight: ${clientHeight}, scrollHeight: ${scrollHeight}`);
+    
+    if (scrollTop + clientHeight >= scrollHeight - 50) {
+        console.log("End of page reached, loading more products");
+        mostrarProductos();
+    }
+}
+
+// Iniciar la carga de los primeros productos y configurar el evento de scroll
+document.addEventListener("DOMContentLoaded", function() { 
     mostrarProductos();
+    window.addEventListener("scroll", manejarScroll);
 });
 
 //Función mostrar detalle 
@@ -638,14 +665,11 @@ function limpiaCantidad() {
     document.getElementById("cantidad").value = ""; 
 }
 
-function cargarProductos() {
-    return obtenerDatos(KEY_PRODUCTOS) || [];
-}
+
 
 
 const categoriaSelect = document.getElementById("categoria");
 const materialInput = document.getElementById("material");
-let productos = cargarProductos(); // Asegúrate de que productos esté definido globalmente.
 
 
 function filtrar() {
@@ -839,7 +863,7 @@ function confirmarCompra() {
 
     
     if (!formulario.checkValidity()) {
-        alert("Por favor, completa todos los campos del formulario correctamente.");
+        // alert("Por favor, completa todos los campos del formulario correctamente.");
         formulario.reportValidity();  
         return;
     }

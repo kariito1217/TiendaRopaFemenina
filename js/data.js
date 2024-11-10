@@ -544,7 +544,6 @@ function limpiarCampos() {
     document.getElementsByName("tipoEntrega").forEach(input => input.checked = false);
 }
 
-// Función para mostrar productos con paginación
 function mostrarProductos(productosMostrar = productos) {
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
 
@@ -590,13 +589,12 @@ function mostrarProductos(productosMostrar = productos) {
 
 function manejarScroll() {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    console.log(`scrollTop: ${scrollTop}, clientHeight: ${clientHeight}, scrollHeight: ${scrollHeight}`);
     
     if (scrollTop + clientHeight >= scrollHeight - 50) {
         if (productosFiltrados) {
             mostrarProductos(productosFiltrados);
         } else {
-            mostrarProductos();
+            mostrarProductos();  // Usamos la lista completa de productos cuando no hay filtro
         }
     }
 }
@@ -694,14 +692,24 @@ function limpiarFiltro() {
     const categoriaSelect = document.getElementById("categoria");
     const materialInput = document.getElementById("material");
 
+    // Restablece los valores de los filtros
     categoriaSelect.value = "todos";
     materialInput.value = "";
-    productosFiltrados = null;
-    paginaActual = 1;
 
+    // Restablecer la lista filtrada y la paginación
+    productosFiltrados = null;
+    paginaActual = 1;  // Restablecer a la primera página
+
+    // Limpiar los productos en el contenedor
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
-    contenedorProductos.innerHTML = "";
-    mostrarProductos();
+    contenedorProductos.innerHTML = ""; // Limpiar los productos previos
+
+    // Mostrar todos los productos
+    mostrarProductos();  // Esto ahora debería mostrar los productos completos
+
+    // Restablecer el estado del scroll (evitar que el scroll esté esperando más productos)
+    window.removeEventListener("scroll", manejarScroll);  // Eliminar el evento de scroll actual
+    window.addEventListener("scroll", manejarScroll);  // Reagregarlo con la nueva lista
 }
 
 document.addEventListener("DOMContentLoaded", function() {

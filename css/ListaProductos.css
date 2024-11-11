@@ -5,13 +5,13 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between; /* Distribuye el espacio entre el logo y los filtros/botones */
-    align-items: center; /* Alinea verticalmente el logo y los filtros/botones */
+    justify-content: space-between; 
+    align-items: center; 
     padding-left: 150px;
-    padding-right: 150px; /* Añadido para el espacio a la derecha */
+    padding-right: 150px; 
     background-color: #f3c8da;
-    border-bottom: 2px solid #dee2e6; /* Línea inferior */
-    height: auto; /* Ajusta la altura automáticamente */
+    border-bottom: 2px solid #dee2e6; 
+    height: auto; 
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -19,11 +19,11 @@ header {
 header > div {
     display: flex;
     align-items: center;
-    margin: 0 20px; /* Espacio entre filtros */
+    margin: 0 20px;
 }
 
 .filters {
-    margin-bottom: 10px; /* Espacio entre cada filtro */
+    margin-bottom: 10px; 
 }
 
 .BotonesFiltros {
@@ -51,7 +51,7 @@ header > div {
 }
 
 select {
-    padding: 10px; /* Espaciado interno en el select */
+    padding: 10px; 
     border: 1px solid #ced4da; 
     border-radius: 4px; 
     font-size: 16px; 
@@ -60,21 +60,21 @@ select {
 }
 
 label {
-    margin-right: 10px; /* Espaciado a la derecha */
-    font-weight: bold; /* Negrita */
-    color: #343a40; /* Color del texto */
+    margin-right: 10px; 
+    font-weight: bold; 
+    color: #343a40; 
     font-size: 16px;
 }
 
 header img {
-    max-width: 150px; /* Ajusta el tamaño máximo de la imagen del logo */
-    height: auto; /* Mantiene la proporción de la imagen */
+    max-width: 150px; 
+    height: auto; 
 }
 
 .contenedorDeProductos {
     display: grid;
     grid-template-columns: repeat(3, 290px);
-    gap: 26px; /* Espacio entre los productos */
+    gap: 26px; 
     place-content: start; 
     padding-left: 85px; 
     padding-top: 50px;
@@ -88,7 +88,7 @@ header img {
     width: 290px;
     height: 290px;
     border-radius: 20px;
-    object-fit: cover; /* La imagen se acomoda al contenedor */
+    object-fit: cover;
 }
 
 .info {
@@ -124,14 +124,14 @@ header img {
 } 
 
 .detalleProducto {
-    display: none; /* Ocultar el detalle de producto por defecto */
+    display: none; 
     position: fixed;
-    top: 0; /* Alinea a la parte superior de la ventana */
-    right: 0; /* Alinea a la derecha de la ventana */
+    top: 0; 
+    right: 0; 
     width: 350px;
     height: 100vh;
     padding: 20px;
-    overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido excede la altura */
+    overflow-y: auto; 
     border-left: 2px solid #ddd;
     background-color: #f0dde5;
 }
@@ -154,7 +154,7 @@ header img {
     top: 10px;
     left: 10px;
     cursor: pointer; 
-    z-index: 1; /* Asegura que esté por encima de la imagen del producto */
+    z-index: 1; 
 }
 
 .detalleProductoClose img {
@@ -203,7 +203,7 @@ header img {
 
 .nombreProducto,
 .precioProducto{
-    font-weight: bold; /* Pone el texto en negrita */
+    font-weight: bold; 
     font-size: 17px;
 }
 
@@ -214,7 +214,7 @@ header img {
     margin-bottom: 10px;
 }
 #material {
-    width: 400px; /* Cambia este valor para ajustar el ancho */
+    width: 400px; 
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ffccd5;

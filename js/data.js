@@ -19,7 +19,7 @@ function obtenerDatos(key){
 }    
 
 
-if (!localStorage.getItem(KEY_PRODUCTOS)) {//Comprueba si no hay datos almacenado bajo esa clave
+if (!localStorage.getItem(KEY_PRODUCTOS)) {
     const productos = [
         {
             id: 1,
@@ -510,7 +510,7 @@ function cargarProductos() {
     return obtenerDatos(KEY_PRODUCTOS) || [];
 }
 
-let productos = cargarProductos(); // Asegúrate de que productos esté definido globalmente.
+let productos = cargarProductos(); 
 
 
 function iniciarCompra() {
@@ -594,7 +594,7 @@ function manejarScroll() {
         if (productosFiltrados) {
             mostrarProductos(productosFiltrados);
         } else {
-            mostrarProductos();  // Usamos la lista completa de productos cuando no hay filtro
+            mostrarProductos();  
         }
     }
 }
@@ -605,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// Función para mostrar el detalle del producto con validación de stock
+
 function mostrarDetalleProducto(producto) {
     const detalleProducto = document.querySelector(".detalleProducto");
 
@@ -619,35 +619,34 @@ function mostrarDetalleProducto(producto) {
     document.querySelector(".materialProducto").innerText = `Material: ${producto.material}`;
     document.querySelector(".stockProducto").innerText = `Stock: ${producto.stock}`;
 
-    // Agregar evento al campo de cantidad para validar con el stock
+ 
     const cantidadInput = document.getElementById("cantidad");
     const agregarButton = document.getElementById("agregarProducto");
     const advertenciaStock = document.getElementById("advertenciaStock");
 
-    // Validar si la cantidad es válida al cambiar el valor en el input de cantidad
+   
     cantidadInput.addEventListener('input', function () {
         const cantidad = parseInt(cantidadInput.value);
 
         if (cantidad > producto.stock) {
             advertenciaStock.innerText = `Solo hay ${producto.stock} unidades disponibles.`;
-            agregarButton.disabled = true; // Deshabilitar el botón si excede el stock
+            agregarButton.disabled = true; 
         } else {
             advertenciaStock.innerText = "";
-            agregarButton.disabled = false; // Habilitar el botón si la cantidad es válida
+            agregarButton.disabled = false;
         }
     });
 
-    // Mostrar el detalle del producto
+    
     detalleProducto.style.display = "block";
 
-    // Evento para agregar el producto al carrito con la cantidad seleccionada
     agregarButton.onclick = function () {
         agregarAlCarrito(producto);
     };
 }
 
 
-//Busca en que lugar del contenedor del producto se dio click exactamente y trae ese producto
+
 document.addEventListener("DOMContentLoaded", function() {
     const contenedorProductos = document.querySelector(".contenedorDeProductos"); 
 
@@ -656,7 +655,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    // const productos = cargarProductos();
+
     mostrarProductos(productos);
 
     contenedorProductos.addEventListener("click", function (event) {
@@ -671,7 +670,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-//Aquí es para darle la funcionalidad de ue cuando presionen la imagen se cierre el datelle del producto
+
 const closeBtn = document.getElementById("close-btn");
 const detalleProducto = document.querySelector(".detalleProducto");
 
@@ -713,7 +712,6 @@ function limpiarFiltro() {
     const categoriaSelect = document.getElementById("categoria");
     const materialInput = document.getElementById("material");
 
-    // Restablece los valores de los filtros
     categoriaSelect.value = "todos";
     materialInput.value = "";
 
@@ -721,14 +719,14 @@ function limpiarFiltro() {
     productosFiltrados = null;
     paginaActual = 1;  // Restablecer a la primera página
 
-    // Limpiar los productos en el contenedor
+    
     const contenedorProductos = document.querySelector(".contenedorDeProductos");
     contenedorProductos.innerHTML = ""; // Limpiar los productos previos
 
-    // Mostrar todos los productos
-    mostrarProductos();  // Esto ahora debería mostrar los productos completos
+    
+    mostrarProductos();  // Esto muestra los productos completos
 
-    // Restablecer el estado del scroll (evitar que el scroll esté esperando más productos)
+
     window.removeEventListener("scroll", manejarScroll);  // Eliminar el evento de scroll actual
     window.addEventListener("scroll", manejarScroll);  // Reagregarlo con la nueva lista
 }
@@ -759,7 +757,7 @@ function guardarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// Función para agregar productos al carrito con validación de cantidad y stock
+
 function agregarAlCarrito(producto) {
     const cantidadInput = document.getElementById("cantidad").value;
     const cantidad = parseInt(cantidadInput);
@@ -775,22 +773,20 @@ function agregarAlCarrito(producto) {
         return;
     }
 
-    // Obtener el carrito del localStorage o crear uno nuevo si no existe
     const carrito = cargarCarrito();
 
-    // Buscar si el producto ya está en el carrito
+   
     const productoEnCarrito = carrito.find(item => item.id === producto.id);
     if (productoEnCarrito) {
-        // Actualizar la cantidad del producto en el carrito
+    
         productoEnCarrito.cantidad += cantidad;
 
-        // Verificar que no exceda el stock disponible
+     
         if (productoEnCarrito.cantidad > producto.stock) {
             productoEnCarrito.cantidad = producto.stock;
             alert(`Solo puedes agregar hasta ${producto.stock} unidades de este producto en total.`);
         }
     } else {
-        // Agregar el nuevo producto al carrito
         carrito.push({ ...producto, cantidad });
     }
 
@@ -835,7 +831,7 @@ function mostrarCarrito() {
         tbodyCarrito.appendChild(fila);
     });
 
-    // Mostrar el total de la compra y el costo del domicilio
+    
     const filaTotal = document.createElement("tr");
     filaTotal.innerHTML = `
         <td colspan="4">Costo total de los productos</td>
@@ -868,7 +864,6 @@ function completarCompra() {
     
     guardarCarrito(carrito);
     window.location.href = 'CarritoCompras.html';
-    // mostrarCarrito();
 }
 
 function eliminar(id) {
@@ -878,7 +873,7 @@ function eliminar(id) {
     mostrarCarrito();
 }
 
-// Ejecuta mostrarCarrito cuando el DOM esté cargado
+
 document.addEventListener("DOMContentLoaded", mostrarCarrito);
 
 
@@ -916,7 +911,6 @@ function confirmarCompra() {
 
     
     if (!formulario.checkValidity()) {
-        // alert("Por favor, completa todos los campos del formulario correctamente.");
         formulario.reportValidity();  
         return;
     }
@@ -929,7 +923,7 @@ function confirmarCompra() {
     validarCompra().then(mensaje => {
         alert(mensaje);
         compraEnProgreso = false;  // Reiniciar el estado de compra
-        window.location.href = 'Index.html'; // Redirigir a la página inicial
+        window.location.href = 'Index.html'; 
     }).catch(error => {
         alert(`Error: ${error}`);
         compraEnProgreso = false;  // Reiniciar el estado de compra si hay un error

@@ -29,8 +29,8 @@ header {
 }
 
 header img {
-    max-width: 90%; /* La imagen ocupa el 90% del ancho */
-    max-height: 80%; /* Limita la altura máxima al 80% del header */
+    max-width: 90%; 
+    max-height: 80%; 
     object-fit: contain; /* Mantiene la proporción de la imagen */
 }
 

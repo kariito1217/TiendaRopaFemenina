@@ -605,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-//Función mostrar detalle 
+// Función para mostrar el detalle del producto con validación de stock
 function mostrarDetalleProducto(producto) {
     const detalleProducto = document.querySelector(".detalleProducto");
 
@@ -619,12 +619,33 @@ function mostrarDetalleProducto(producto) {
     document.querySelector(".materialProducto").innerText = `Material: ${producto.material}`;
     document.querySelector(".stockProducto").innerText = `Stock: ${producto.stock}`;
 
+    // Agregar evento al campo de cantidad para validar con el stock
+    const cantidadInput = document.getElementById("cantidad");
+    const agregarButton = document.getElementById("agregarProducto");
+    const advertenciaStock = document.getElementById("advertenciaStock");
+
+    // Validar si la cantidad es válida al cambiar el valor en el input de cantidad
+    cantidadInput.addEventListener('input', function () {
+        const cantidad = parseInt(cantidadInput.value);
+
+        if (cantidad > producto.stock) {
+            advertenciaStock.innerText = `Solo hay ${producto.stock} unidades disponibles.`;
+            agregarButton.disabled = true; // Deshabilitar el botón si excede el stock
+        } else {
+            advertenciaStock.innerText = "";
+            agregarButton.disabled = false; // Habilitar el botón si la cantidad es válida
+        }
+    });
+
+    // Mostrar el detalle del producto
     detalleProducto.style.display = "block";
 
-    document.getElementById("agregarProducto").onclick = function () {
+    // Evento para agregar el producto al carrito con la cantidad seleccionada
+    agregarButton.onclick = function () {
         agregarAlCarrito(producto);
     };
 }
+
 
 //Busca en que lugar del contenedor del producto se dio click exactamente y trae ese producto
 document.addEventListener("DOMContentLoaded", function() {
@@ -738,20 +759,38 @@ function guardarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
+// Función para agregar productos al carrito con validación de cantidad y stock
 function agregarAlCarrito(producto) {
     const cantidadInput = document.getElementById("cantidad").value;
     const cantidad = parseInt(cantidadInput);
 
+    // Validar que la cantidad sea mayor que 0 y no exceda el stock
     if (!cantidad || cantidad < 1) {
         alert("Por favor, ingresa una cantidad válida.");
         return;
     }
-    const carrito =cargarCarrito();
 
+    if (cantidad > producto.stock) {
+        alert(`No puedes agregar más de ${producto.stock} unidades de este producto.`);
+        return;
+    }
+
+    // Obtener el carrito del localStorage o crear uno nuevo si no existe
+    const carrito = cargarCarrito();
+
+    // Buscar si el producto ya está en el carrito
     const productoEnCarrito = carrito.find(item => item.id === producto.id);
     if (productoEnCarrito) {
+        // Actualizar la cantidad del producto en el carrito
         productoEnCarrito.cantidad += cantidad;
+
+        // Verificar que no exceda el stock disponible
+        if (productoEnCarrito.cantidad > producto.stock) {
+            productoEnCarrito.cantidad = producto.stock;
+            alert(`Solo puedes agregar hasta ${producto.stock} unidades de este producto en total.`);
+        }
     } else {
+        // Agregar el nuevo producto al carrito
         carrito.push({ ...producto, cantidad });
     }
 

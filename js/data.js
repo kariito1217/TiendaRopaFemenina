@@ -884,7 +884,7 @@ function validarCompra() {
     const totalProductos = carrito.reduce((sum, producto) => sum + producto.cantidad, 0);
     const totalCompra = carrito.reduce((sum, producto) => sum + (producto.precio * producto.cantidad), 0) + 15000; // Incluye el costo del domicilio
 
-    const presupuesto = obtenerDatos(KEY_COMPRA).presupuesto; // Asumiendo que ya tienes un presupuesto almacenado
+    const presupuesto = obtenerDatos(KEY_COMPRA).presupuesto;
 
     return new Promise((resolve, reject) => {
         const tiempoProcesamiento = Math.floor(Math.random() * (3000 - 2000 + 1)) + 2000;

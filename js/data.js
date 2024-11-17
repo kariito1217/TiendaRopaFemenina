@@ -630,7 +630,7 @@ function mostrarDetalleProducto(producto) {
 
         if (cantidad > producto.stock) {
             advertenciaStock.innerText = `Solo hay ${producto.stock} unidades disponibles.`;
-            agregarButton.disabled = true; 
+            agregarButton.disabled = true; //Desactiva
         } else {
             advertenciaStock.innerText = "";
             agregarButton.disabled = false;
@@ -646,7 +646,7 @@ function mostrarDetalleProducto(producto) {
 }
 
 
-
+//
 document.addEventListener("DOMContentLoaded", function() {
     const contenedorProductos = document.querySelector(".contenedorDeProductos"); 
 

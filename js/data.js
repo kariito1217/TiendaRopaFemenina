@@ -951,7 +951,7 @@ function cancelarCompra() {
     }
 
     localStorage.removeItem("carrito");
-    window.location.href = 'Index.html';
+    window.location.href = '../index.html';
 }
 
 function seguirComprando() {

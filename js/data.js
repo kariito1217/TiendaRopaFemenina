@@ -530,7 +530,7 @@ function iniciarCompra() {
             tipoEntrega
         };
         guardarDatos(KEY_COMPRA, datosCompra);
-        window.location.href = 'ListaProductos.html';
+        window.location.href = 'html/ListaProductos.html';
     }
     formulario.reportValidity(); 
     return;

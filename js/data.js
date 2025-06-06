@@ -923,7 +923,7 @@ function confirmarCompra() {
     validarCompra().then(mensaje => {
         alert(mensaje);
         compraEnProgreso = false;  // Reiniciar el estado de compra
-        window.location.href = 'Index.html'; 
+        window.location.href = '../index.html'; 
     }).catch(error => {
         alert(`Error: ${error}`);
         compraEnProgreso = false;  // Reiniciar el estado de compra si hay un error
